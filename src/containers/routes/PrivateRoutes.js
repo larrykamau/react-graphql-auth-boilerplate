@@ -25,6 +25,7 @@ class PrivateRoutes extends Component {
       // For removing duplicate entries, compare with 'url'.
       allowedRoutes = uniqBy(allowedRoutes, "url");
       this.setState({ allowedRoutes });
+      console.log("allowedRoutes", allowedRoutes);
     } else {
       this.props.history.push("/");
     }
@@ -33,10 +34,10 @@ class PrivateRoutes extends Component {
   render() {
     return (
       <Fragment>
-        <Navigation
+        {/* <Navigation
           routes={this.state.allowedRoutes}
           path={this.props.match.path}
-        />
+        /> */}
         <Switch>
           {this.state.allowedRoutes.map(route => (
             <PrivateRoute
