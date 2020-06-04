@@ -34,10 +34,10 @@ class PrivateRoutes extends Component {
   render() {
     return (
       <Fragment>
-        {/* <Navigation
+        <Navigation
           routes={this.state.allowedRoutes}
           path={this.props.match.path}
-        /> */}
+        />
         <Switch>
           {this.state.allowedRoutes.map(route => (
             <PrivateRoute

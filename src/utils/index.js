@@ -120,13 +120,13 @@ export const addToLocalStorageArray = function(name, value) {
 
   // If no existing data, create an array
   // Otherwise, convert the localStorage string to an array
-  existing = existing ? existing.split(",") : [];
+  existing = existing ? JSON.parse(existing.split(",")) : [];
 
   // Add new data to localStorage Array
   existing.push(value);
 
   // Save back to localStorage
-  localStorage.setItem(name, existing.toString());
+  localStorage.setItem(name, JSON.stringify(existing));
 };
 
 /**

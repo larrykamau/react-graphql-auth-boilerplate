@@ -7,7 +7,6 @@ import {} from "utils";
 
 export default class Auth {
   constructor() {
-    this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.storeProfileCred = this.storeProfileCred.bind(this);
     this.storePayloadCred = this.storePayloadCred.bind(this);

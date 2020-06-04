@@ -3,12 +3,14 @@ import { Button } from "../Button";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { history } from "utils";
+import Auth from "containers/Services/auth";
 
+const auth = new Auth()
 class Navigation extends Component {
   handleLogout = () => {
-    localStorage.removeItem("kiu_auth_roles");
-    history.push("/");
+    auth.logout()
   };
+  
 
   render() {
     return (
@@ -25,6 +27,7 @@ class Navigation extends Component {
               </Link>
             ))}
           </ol>
+          
         </div>
 
         <Button onClick={this.handleLogout}>Logout</Button>

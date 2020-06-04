@@ -26,7 +26,7 @@ const checkAuth = () => {
       minutes,
       seconds
     } = millisecondsToDaysHoursMinutesSeconds(exp);
-    alert(
+    console.log(
       `Token Expires in: ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`
     );
 
@@ -34,7 +34,7 @@ const checkAuth = () => {
       return false;
     }
   } catch (error) {
-    alert(`${JSON.stringify(error, null, 2)}`);
+    console.log(`${JSON.stringify(error, null, 2)}`);
   }
   return true;
 };

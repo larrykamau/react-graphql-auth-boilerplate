@@ -10,13 +10,14 @@ import FormikControl from "../Formik/FormikControl";
 import {
   unhashPassword,
   addObjectToLocalStorageObject,
-  addToLocalStorageArray,
   normalizeErrors
 } from "utils";
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_MUTATION } from "./mutations";
+import Auth from "../Services/auth";
 
 function LoginForm() {
+  const auth = new Auth();
   const emailNotLongEnough = "email must be at least 3 characters";
   const emailRequired = "Please enter an email address";
   const invalidEmail = "email must be a valid email";
@@ -50,23 +51,10 @@ function LoginForm() {
     }
     if (data) {
       if (data.tokenAuth.success) {
-        var roles;
-        if (!data.tokenAuth.user.isAdmin) {
-          roles = "admin";
-        }
-        addToLocalStorageArray("kiu_auth_roles", roles);
-        var payload = data.tokenAuth.payload;
-        let extraPayloadData = {
-          refreshToken: data.tokenAuth.refreshToken,
-          refreshExpiresIn: data.tokenAuth.refreshExpiresIn,
-          token: data.tokenAuth.token
-        };
-        payload = { ...payload, ...extraPayloadData };
-        addObjectToLocalStorageObject("kiu_auth_payload", payload);
-        var profile = data.tokenAuth.user;
-        delete profile.__typename;
-        addObjectToLocalStorageObject("kiu_auth_profile", profile);
-        if (location.state !== undefined) {
+        auth.storeRolesCred(data);
+        auth.storePayloadCred(data);
+        auth.storeProfileCred(data);
+        if (location.state !== undefined && location.state.referrer) {
           history.push(location.state.referrer);
         } else {
           history.push("/app");

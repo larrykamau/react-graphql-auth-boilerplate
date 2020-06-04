@@ -70,12 +70,12 @@ const rolesConfig = {
       components.dashboard,
       components.manager,
       components.customers,
-      components.service1,
-      components.service2
+      components.admin,
+      components.users
     ]
   },
   customer: {
-    routes: [components.service1, components.service2]
+    routes: [components.admin, components.users]
   },
   common: {
     routes: [
