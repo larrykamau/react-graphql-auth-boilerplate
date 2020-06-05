@@ -3,7 +3,7 @@
   "short_name": "Kiu Delivery",
   "theme_color": "#240090",
   "background_color": "#240090",
-  "display": "standalone",
+  "display": "fullscreen",
   "Scope": ".",
   "start_url": "/app",
   "icons": [
