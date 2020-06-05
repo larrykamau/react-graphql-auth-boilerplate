@@ -81,7 +81,7 @@ const rolesConfig = {
     routes: [
       {
         component: "Home",
-        url: "/",
+        url: "",
         title: "Home",
         icon: "menu",
         module: 1

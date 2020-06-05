@@ -4,10 +4,8 @@ import { Link } from "../../components/Link";
 import { H1 } from "../../components/H1";
 import { P } from "../../components/P";
 import { Button, InvertedButton } from "../../components/Button";
-import { addToLocalStorageArray } from "utils";
 
 function Footer() {
-  addToLocalStorageArray("testers", "role");
   return (
     <Wrapper>
       <H1>Alcohol Delivery</H1>

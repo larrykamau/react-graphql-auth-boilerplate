@@ -1,11 +1,6 @@
-import {
-  addObjectToLocalStorageObject,
-  addToLocalStorageArray,
-  history
-} from "utils";
-import {} from "utils";
+import { addObjectToLocalStorageObject, addToLocalStorageArray } from "utils";
 
-export default class Auth {
+class Auth {
   constructor() {
     this.logout = this.logout.bind(this);
     this.storeProfileCred = this.storeProfileCred.bind(this);
@@ -54,12 +49,14 @@ export default class Auth {
     addToLocalStorageArray("kiu_auth_roles", roles);
   }
 
-  logout() {
+  logout(history) {
     // Clear access token and ID token from local storage
     localStorage.removeItem("kiu_auth_payload");
     localStorage.removeItem("kiu_auth_profile");
     localStorage.removeItem("kiu_auth_roles");
     // navigate to the home route
+    // return <Redirect to="/" />;
+
     history.replace("/");
   }
 
@@ -76,3 +73,5 @@ export default class Auth {
     return JSON.parse(localStorage.getItem("kiu_auth_profile"));
   }
 }
+
+export default Auth;

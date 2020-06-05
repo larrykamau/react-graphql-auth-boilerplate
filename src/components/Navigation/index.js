@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { Button } from "../Button";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { history } from "utils";
 import Auth from "containers/Services/auth";
 
-const auth = new Auth()
+const auth = new Auth();
 class Navigation extends Component {
   handleLogout = () => {
-    auth.logout()
+    auth.logout(this.props.history);
   };
-  
 
   render() {
     return (
@@ -27,7 +25,6 @@ class Navigation extends Component {
               </Link>
             ))}
           </ol>
-          
         </div>
 
         <Button onClick={this.handleLogout}>Logout</Button>
@@ -46,4 +43,4 @@ Navigation.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-export default Navigation;
+export default withRouter(Navigation);

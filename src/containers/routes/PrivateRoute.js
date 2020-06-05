@@ -18,8 +18,6 @@ const checkAuth = () => {
   try {
     const { exp } = decode(accessToken);
 
-    console.log("exp", exp);
-
     const {
       days,
       hours,

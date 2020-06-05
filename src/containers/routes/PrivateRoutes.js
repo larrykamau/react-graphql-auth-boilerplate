@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { uniqBy } from "lodash";
 import { rolesConfig } from "config/roles";
 import * as Routes from "./PubRoutes";
@@ -25,9 +25,8 @@ class PrivateRoutes extends Component {
       // For removing duplicate entries, compare with 'url'.
       allowedRoutes = uniqBy(allowedRoutes, "url");
       this.setState({ allowedRoutes });
-      console.log("allowedRoutes", allowedRoutes);
     } else {
-      this.props.history.push("/");
+      this.props.history.push("/login");
     }
   }
 
@@ -47,7 +46,6 @@ class PrivateRoutes extends Component {
               path={`${this.props.match.path}${route.url}`}
             />
           ))}
-          {/* <Route component={NotFound} /> */}
         </Switch>
       </Fragment>
     );
