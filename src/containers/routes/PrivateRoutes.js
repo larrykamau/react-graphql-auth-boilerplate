@@ -1,15 +1,21 @@
-import React, { Component, Fragment } from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import { Switch, useHistory, useRouteMatch } from "react-router-dom";
 import { uniqBy } from "lodash";
 import { rolesConfig } from "config/roles";
-import * as Routes from "./PubRoutes";
+import * as Routes from "./RoutesConfig";
 import Navigation from "../../components/Navigation";
 import PrivateRoute from "./PrivateRoute";
 
-class PrivateRoutes extends Component {
-  state = { allowedRoutes: [] };
+function PrivateRoutes() {
+  const history = useHistory();
+  const match = useRouteMatch();
+  const [allowedRoutes, setAllowedRoutes] = useState([]);
+  let roles = JSON.parse(localStorage.getItem("kiu_auth_roles"));
+  if (!roles) {
+    history.push("/login");
+  }
 
-  componentDidMount() {
+  useEffect(() => {
     /*
       TODO: Replace hardcoded roles with redux,
        localStorage, or get from server.
@@ -24,32 +30,24 @@ class PrivateRoutes extends Component {
 
       // For removing duplicate entries, compare with 'url'.
       allowedRoutes = uniqBy(allowedRoutes, "url");
-      this.setState({ allowedRoutes });
-    } else {
-      this.props.history.push("/login");
+      setAllowedRoutes(allowedRoutes);
+      console.log("allowed routes", allowedRoutes);
     }
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <Navigation
-          routes={this.state.allowedRoutes}
-          path={this.props.match.path}
-        />
-        <Switch>
-          {this.state.allowedRoutes.map(route => (
-            <PrivateRoute
-              exact
-              key={route.url}
-              component={Routes[route.component]}
-              path={`${this.props.match.path}${route.url}`}
-            />
-          ))}
-        </Switch>
-      </Fragment>
-    );
-  }
+  }, []);
+  return (
+    <Fragment>
+      <Navigation routes={allowedRoutes} path={match.path} />
+      <Switch>
+        {allowedRoutes.map(route => (
+          <PrivateRoute
+            exact
+            key={route.url}
+            component={Routes[route.component]}
+            path={`${match.path}${route.url}`}
+          />
+        ))}
+      </Switch>
+    </Fragment>
+  );
 }
-
 export default PrivateRoutes;

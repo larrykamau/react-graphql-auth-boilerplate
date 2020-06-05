@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "../../components/Link";
 
-function Error404() {
+function Error500() {
   let location = useLocation();
 
   return (
@@ -15,4 +15,4 @@ function Error404() {
     </div>
   );
 }
-export default Error404;
+export default Error500;

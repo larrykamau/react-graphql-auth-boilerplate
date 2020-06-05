@@ -16,9 +16,8 @@ import Loader from "components/Loader";
 function Login() {
   const history = useHistory();
   const getToken = () => {
-    const pureJSON = localStorage.getItem("kiu_auth_access_token");
-    const accessToken = JSON.parse(localStorage.getItem(pureJSON));
-    if (accessToken === null || accessToken === undefined) {
+    const payloadJSON = localStorage.getItem("kiu_auth_payload");
+    if (payloadJSON === null || payloadJSON === undefined) {
       return false;
     } else {
       return true;
