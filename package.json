@@ -12,7 +12,7 @@
     "apollo-client": "2.6.10",
     "apollo-client-preset": "1.0.8",
     "apollo-link-http": "1.5.17",
-    "crypto-js": "4.0.0",
+    "crypto-js": "4.2.0",
     "formik": "2.1.4",
     "graphql": "15.0.0",
     "graphql-tag": "2.10.3",
